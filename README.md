@@ -2,7 +2,7 @@
 
                         Jenkins Interview
 
-![Blue Badge]( Q: What is Jenkins, and what is its primary purpose in the software development process? )
+<font color="red"> Q: What is Jenkins, and what is its primary purpose in the software development process?<font>
 A: Jenkins is an open-source automation server used for Continuous Integration (CI) and
 Continuous Delivery (CD). It automates building, testing, and deploying applications. Primary
 purpose: automate build-test-deploy, improve collaboration, and integrate with DevOps tools to
