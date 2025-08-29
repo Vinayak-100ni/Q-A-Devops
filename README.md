@@ -104,5 +104,5 @@ Maintain environment-specific configurations (dev/staging/prod) via ConfigMaps, 
 4. Benefits of This Approach
 Independent development – Each team can release its service without waiting for others.
 Faster feedback loop – Builds and tests run per service.
-Cohesive releases – Orchestrator pipeline ensures services work together before production deployment.
+Cohesive releases – Orchestrator pipeline ensures services work together before production deployment. #
 
