@@ -76,3 +76,12 @@ Automation: Eliminates manual setup, as the build process is scripted.
 Portability: You can easily share the Dockerfile and build the image anywhere.
 
 Versioning: Since it’s code, Dockerfiles can be version-controlled (Git).
+
+##     What is the difference between an image and a container in Docker?
+     Docker Image	                                                   Docker Container
+Blueprint/template for the application	                      Running instance of an image
+Static, read-only	                                            Dynamic, can be started/stopped/removed
+Created once and reused many times	                          Created from an image
+Stored in Docker Hub/Registry	                                Runs in the Docker Engine
+##     What is Docker Compose, and how does it simplify multi-container application orchestration?
+###    What is Docker Compose, and how does it simplify multi-container application orchestration?
