@@ -98,3 +98,51 @@ Service linking – Automatically creates a private network so containers can ta
 Reproducibility – Same setup can be shared with teammates and run in any environment.
 
 Scalability – You can scale services (e.g., docker-compose up --scale backend=3) without extra complexity.
+
+##     Describe the Docker networking modes and how containers communicate with each other.
+Docker provides different networking modes to control how containers communicate with each other and the outside world.
+
+1. Bridge (default)
+
+Containers get a private IP on a virtual bridge network.
+
+Containers on the same bridge can talk to each other using their container name as DNS.
+
+To expose a service externally, we use port mapping (-p 8080:80).
+✅ Most commonly used for standalone applications.
+
+2. Host
+
+The container shares the host machine’s network stack.
+
+No port mapping is required — container services are directly accessible on host IP/ports.
+✅ Useful for performance-critical apps or when you need direct host networking.
+
+3. None
+
+The container is isolated from all networks.
+
+Only loopback (localhost) works inside the container.
+✅ Used for security or when you want full custom networking.
+
+4. Overlay (in Swarm/Kubernetes setups)
+
+Creates a network that spans across multiple Docker hosts.
+
+Allows containers running on different nodes to communicate securely.
+✅ Used in distributed applications and microservices.
+
+5. Macvlan
+
+Assigns a unique MAC address to the container, making it appear as a physical device on the local network.
+
+Containers can get IPs from the same subnet as the host.
+✅ Useful when containers need to look like physical devices in a network.
+
+How containers communicate with each other:
+
+Within same bridge network: They communicate directly via container name (thanks to Docker’s DNS).
+
+Across different networks: You need to connect the container to the same user-defined network.
+
+External communication: Expose ports using -p or --publish flag.
