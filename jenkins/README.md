@@ -141,4 +141,25 @@ Keep last stable build info in Jenkins (PREVIOUS_BUILD_NUMBER).
 Automate health checks and smoke tests before promoting deployment.
 Optionally, integrate blue-green or canary strategy for safer rollouts
 
+## Your company is adopting Infrastructure as Code (IaC) using tools like Terraform. How can you incorporate Terraform scripts into your Jenkins pipeline to automate the provisioning of infrastructure alongside application deployment?
+
+Store the Terraform code in a version-controlled repository (e.g., GitHub/GitLab) along with application code or in a separate infra repo.
+Configure a Jenkins pipeline (Declarative or Scripted) with specific stages for:
+Terraform Init → Initialize backend and providers.
+Terraform Plan → Generate and review the execution plan.
+Terraform Apply → Provision infrastructure automatically after approval.
+Deploy Application → Once infra is ready, deploy application containers or code.
+2. How to implement:
+Use a Jenkins agent with Terraform installed, or use a Docker image containing Terraform
+Securely manage credentials (AWS, Azure, GCP) using Jenkins Credentials plugin or Vault.
+Best Practices I would follow:
+Use remote backend (S3, GCS, Azure Blob, etc.) for storing Terraform state.
+Enable locking (e.g., DynamoDB for AWS) to prevent concurrent runs.
+Use workspaces for environment separation (dev/stage/prod).
+Incorporate Terraform validate & lint in pipeline to catch misconfigurations early.
+Add rollbacks (destroy/previous state apply) in case of failures.
+
+## Your team is considering migrating from a traditional Jenkins setup to Jenkins Pipelines (Jenkinsfile). Explain the benefits of using Jenkins Pipelines and the steps you would take to migrate existing jobs.
+Jenkins Pipelines give pipeline-as-code, version control, resilience, and support for complex workflows like parallel stages. To migrate, I’d map existing freestyle jobs into pipeline stages(like build, test, deploy), write Jenkinsfiles, store them in Git, test them, and then gradually replace the old jobs with pipeline jobs
+
 
