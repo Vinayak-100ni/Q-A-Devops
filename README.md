@@ -104,5 +104,15 @@ Maintain environment-specific configurations (dev/staging/prod) via ConfigMaps, 
 4. Benefits of This Approach
 Independent development – Each team can release its service without waiting for others.
 Faster feedback loop – Builds and tests run per service.
-Cohesive releases – Orchestrator pipeline ensures services work together before production deployment. 
+Cohesive releases – Orchestrator pipeline ensures services work together before production deployment.
+
+# One of your Jenkins jobs failed during the build process, and you need to investigate the issue. Walk me through the steps you would take to identify the root cause of the failure and fix it.
+First, I would open the Jenkins console logs to locate the exact error message and check whether it’s a code-related or environment-related failure. If it’s code-related, I’d review the recent commits and fix the issue locally. If it’s environment-related, I’d check the Jenkins job configuration, tools version, dependencies, and agent health. After applying the fix, I’d rerun the job and verify it passes.
+
+# Your team uses Docker containers for application deployment. Explain how you would integrate Jenkins with Docker to automate the containerization and deployment of your applications.
+I would integrate Jenkins with Docker by installing Docker on Jenkins agents, configuring credentials for secure registry access, and writing a Jenkins pipeline that builds a Docker image, pushes it to a registry, and then deploys it to the target environment like Kubernetes or Docker hosts. This way, every code commit automatically triggers containerization and deployment 
+For example, in one of my projects We wrote a Dockerfile, and in Jenkins I built a pipeline that checked out the code, built the JAR, created a Docker image, pushed it to Docker Hub, and finally updated the Kubernetes deployment with the new image. This automated the entire CI/CD pipeline so that every code change was quickly built, containerized, and deployed with zero downtime.
+
+&  You want to implement a deployment strategy that allows you to roll back to the previous version of the application in case of issues with the current release. How would you set up a Jenkins pipeline to achieve this, considering best practices for deployment?
+
 
