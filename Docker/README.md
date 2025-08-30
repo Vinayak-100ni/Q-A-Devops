@@ -44,28 +44,26 @@ A Dockerfile is essentially a text file containing step-by-step instructions tha
 
 For example:
 
-# Step 1: Base image
+### Step 1: Base image
 FROM node:18
 
-# Step 2: Set working directory
+### Step 2: Set working directory
 WORKDIR /app
 
-# Step 3: Copy files into image
+### Step 3: Copy files into image
 COPY package*.json ./
 RUN npm install
 COPY . .
 
-# Step 4: Expose port
+### Step 4: Expose port
 EXPOSE 3000
 
-# Step 5: Start application
+### Step 5: Start application
 CMD ["npm", "start"]
-
 
 After writing the Dockerfile, we build the image with:
 
 docker build -t myapp:1.0 .
-
 
 This command creates an image called myapp with the tag 1.0.
 
