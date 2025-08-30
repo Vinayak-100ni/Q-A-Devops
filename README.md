@@ -113,6 +113,6 @@ First, I would open the Jenkins console logs to locate the exact error message a
 I would integrate Jenkins with Docker by installing Docker on Jenkins agents, configuring credentials for secure registry access, and writing a Jenkins pipeline that builds a Docker image, pushes it to a registry, and then deploys it to the target environment like Kubernetes or Docker hosts. This way, every code commit automatically triggers containerization and deployment 
 For example, in one of my projects We wrote a Dockerfile, and in Jenkins I built a pipeline that checked out the code, built the JAR, created a Docker image, pushed it to Docker Hub, and finally updated the Kubernetes deployment with the new image. This automated the entire CI/CD pipeline so that every code change was quickly built, containerized, and deployed with zero downtime.
 
-&  You want to implement a deployment strategy that allows you to roll back to the previous version of the application in case of issues with the current release. How would you set up a Jenkins pipeline to achieve this, considering best practices for deployment?
+##  You want to implement a deployment strategy that allows you to roll back to the previous version of the application in case of issues with the current release. How would you set up a Jenkins pipeline to achieve this, considering best practices for deployment?
 
 
