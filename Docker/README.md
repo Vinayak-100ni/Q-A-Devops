@@ -29,3 +29,10 @@ Docker Registry (like Docker Hub or private registry) – A centralized place to
 
 Additionally, Docker uses networking (bridge, host, overlay) and volumes for persistent storage.
 Together, these components allow developers to build, ship, and run applications consistently across environments.
+
+##     What are Docker containers, and how do they work?
+Docker containers are lightweight, standalone, and executable units that package an application with everything it needs — code, libraries, dependencies, and runtime. They run on top of the Docker Engine and share the host operating system’s kernel, which makes them much more efficient than virtual machines.
+
+When you run a container, Docker takes a read-only image, adds a thin writable layer on top, and executes it as an isolated process on the host. Containers use Linux features like namespaces for isolation and cgroups for resource control.
+
+This means each container runs independently but shares the same OS kernel, which is why containers start in seconds, use fewer resources, and can be easily moved between environments without compatibility issues
