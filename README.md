@@ -114,5 +114,31 @@ I would integrate Jenkins with Docker by installing Docker on Jenkins agents, co
 For example, in one of my projects We wrote a Dockerfile, and in Jenkins I built a pipeline that checked out the code, built the JAR, created a Docker image, pushed it to Docker Hub, and finally updated the Kubernetes deployment with the new image. This automated the entire CI/CD pipeline so that every code change was quickly built, containerized, and deployed with zero downtime.
 
 ##  You want to implement a deployment strategy that allows you to roll back to the previous version of the application in case of issues with the current release. How would you set up a Jenkins pipeline to achieve this, considering best practices for deployment?
+1. Choose a Deployment Strategy with Rollback in Mind
+The two most common safe deployment strategies are Blue-Green and Canary. Both allow you to switch traffic back to the old version if the new release fails.
+Blue-Green: Run two identical environments (Blue = live, Green = new). Switch traffic to Green after deployment. If issues → switch back to Blue.
+Canary: Release new version gradually to a subset of users. If issues → stop rollout and revert to old version.
+2. Jenkins Pipeline Setup
+Stage 1: Build & Test
+Build the code, run unit/integration tests.
+Stage 2: Build & Push Docker Image
+Tag images with version + build number (e.g., myapp:1.2.3-45) so rollback is easy.
+Stage 3: Deploy New Version
+Deploy to Kubernetes/VMs using Helm, kubectl, or Ansible.
+Stage 4: Health Check / Smoke Test
+Jenkins runs automated tests (e.g., hitting /health endpoint).
+Stage 5: Decision Gate
+If health check passes → proceed.
+If fails → rollback to last stable version.
+3. Rollback Implementation
+Best Practice: Always keep the previous version tagged as “stable” in your registry.
+How in Jenkinsfile:
+Maintain a parameter like PREVIOUS_IMAGE_TAG.
+If deployment fails, Jenkins runs a rollback stage
+Best Practices to Mention
+Use immutable version tags (no latest tag).
+Keep last stable build info in Jenkins (PREVIOUS_BUILD_NUMBER).
+Automate health checks and smoke tests before promoting deployment.
+Optionally, integrate blue-green or canary strategy for safer rollouts
 
 
