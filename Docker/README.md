@@ -11,3 +11,21 @@ Isolation: Containers isolate applications, but without the overhead of running 
 Density: More containers can run on the same hardware compared to VMs, making it efficient and cost-effective.
 
 So, Docker enables faster development, consistent environments, and more efficient use of resources compared to traditional virtualization
+
+##     Explain the key components of Docker's architecture.
+Docker’s architecture is mainly built around three key components:
+Docker Engine – This is the core runtime. It has:
+
+Docker Daemon (dockerd): Runs on the host, manages images, containers, networks, and volumes.
+
+Docker CLI (docker): Command-line tool that developers use to interact with Docker.
+
+Both communicate through a REST API.
+Docker Images – These are read-only templates that define what goes inside a container, including the application and its dependencies. Images are versioned and stored in registries.
+
+Docker Containers – These are the running instances of images. Containers are lightweight, isolated, and portable.
+
+Docker Registry (like Docker Hub or private registry) – A centralized place to store and distribute images.
+
+Additionally, Docker uses networking (bridge, host, overlay) and volumes for persistent storage.
+Together, these components allow developers to build, ship, and run applications consistently across environments.
