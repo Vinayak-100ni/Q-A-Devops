@@ -270,3 +270,14 @@ On the container side, I’d make sure resource limits (mem_limit) are set in Do
 For a temporary fix, I could restart the container (since containers are stateless by design), but the permanent fix would be to patch the code causing the leak and build a new image. I’d then redeploy it gradually using rolling or canary updates.
 
 Finally, I’d put monitoring alerts in place for memory thresholds so the issue is caught early next time.
+
+##     Your team is concerned about security in the Docker environment. Describe the security best practices you would implement to safeguard against potential vulnerabilities and threats.
+To secure our Docker environment, I’d start with the basics — use only trusted base images from official registries and regularly scan them for vulnerabilities. I’d also make sure we keep images minimal, removing unnecessary packages to reduce the attack surface.
+
+We enforce least privilege by running containers as a non-root user, restricting capabilities, and using read-only file systems where possible. For isolation, we use network segmentation and strict firewall rules / security groups so services only communicate where necessary.
+
+At the orchestration level (Kubernetes), we set resource limits, secrets management (via Vault or Kubernetes Secrets), and apply Pod Security Policies / Pod Security Standards.
+
+Additionally, we integrate container image scanning and signing in CI/CD (using tools like Trivy, Clair, or Docker Scout), and enable runtime monitoring to detect anomalies.
+
+Finally, we make sure the Docker daemon and host OS are patched, and apply the principle of least privilege for access control so only authorized users can run or push images.”
