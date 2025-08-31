@@ -80,8 +80,11 @@ Versioning: Since it’s code, Dockerfiles can be version-controlled (Git).
 ##     What is the difference between an image and a container in Docker?
      Docker Image	                                                   Docker Container
 Blueprint/template for the application------------------------Running instance of an image
+
 Static, read-only---------------------------------------------Dynamic, can be started/stopped/removed
+
 Created once and reused many times----------------------------Created from an image
+
 Stored in Docker Hub/Registry---------------------------------Runs in the Docker Engine
 ##     What is Docker Compose, and how does it simplify multi-container application orchestration?
 Docker Compose is a tool used to define and manage multi-container applications using a single YAML configuration file (docker-compose.yml). Instead of starting each container manually with long docker run commands, you can define services, networks, and volumes in one place and bring the whole application up with a single command:
