@@ -149,3 +149,37 @@ Within same bridge network: They communicate directly via container name (thanks
 Across different networks: You need to connect the container to the same user-defined network.
 
 External communication: Expose ports using -p or --publish flag.
+##     How do you manage data persistence in Docker containers?
+In Docker, containers are ephemeral by default — meaning when a container is removed, its data is lost. To manage data persistence, I use:
+
+Volumes (preferred approach)
+
+Volumes are managed by Docker and stored outside the container’s filesystem.
+
+They allow data to persist even if the container is removed or recreated.
+
+Example:
+
+docker run -d -v mydata:/var/lib/mysql mysql
+
+
+Here, mydata is a named volume, and it keeps MySQL data safe across container restarts.
+
+Bind Mounts
+
+A host directory is mounted directly into a container.
+
+Useful for development (e.g., syncing code), but less portable.
+
+Example:
+
+docker run -d -v $(pwd)/data:/var/lib/mysql mysql
+Best Practices
+
+For databases (MySQL, PostgreSQL, MongoDB), always mount volumes.
+
+For logs or config files, bind mounts can be used.
+
+In production, I usually rely on Docker volumes managed by orchestration tools like Kubernetes Persistent Volumes (PV/PVC) or cloud storage backends (EBS, EFS, Azure Disk).
+##    Explain the concept of Docker volumes and when you would use them.
+Docker volumes are used to persist and manage data outside the container’s lifecycle. I use them mainly for databases, shared storage, and cases where I want data to survive container restarts or upgrades
