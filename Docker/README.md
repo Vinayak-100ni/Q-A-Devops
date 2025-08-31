@@ -194,7 +194,7 @@ The idea is to use one stage for building (with all dependencies, compilers, bui
 
 Example:
 
-# Build stage
+### Build stage
 FROM node:18 AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -202,7 +202,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Runtime stage (only keeps built artifacts)
+### Runtime stage (only keeps built artifacts)
 FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
 
