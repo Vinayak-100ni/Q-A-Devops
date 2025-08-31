@@ -183,3 +183,56 @@ For logs or config files, bind mounts can be used.
 In production, I usually rely on Docker volumes managed by orchestration tools like Kubernetes Persistent Volumes (PV/PVC) or cloud storage backends (EBS, EFS, Azure Disk).
 ##    Explain the concept of Docker volumes and when you would use them.
 Docker volumes are used to persist and manage data outside the container’s lifecycle. I use them mainly for databases, shared storage, and cases where I want data to survive container restarts or upgrades
+##     How do you secure Docker containers and images? Can you mention some best practices for container security?
+I secure Docker by using minimal trusted images, scanning them for vulnerabilities, running containers as non-root with least privileges, managing secrets securely, applying resource limits, and enforcing network and filesystem restrictions. On top of that, I integrate image scanning and security policies in CI/CD pipelines
+##     Explain the concept of multistage Dockerfile caching and how it impacts the build process.
+🔹 Multistage Dockerfile
+
+A multistage Dockerfile allows you to use multiple FROM statements in one Dockerfile.
+
+The idea is to use one stage for building (with all dependencies, compilers, build tools), and another stage for runtime (a smaller, cleaner image).
+
+Example:
+
+# Build stage
+FROM node:18 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Runtime stage (only keeps built artifacts)
+FROM nginx:alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+
+
+This way, the final image is much smaller and contains only what’s needed for runtime.
+
+🔹 Docker Caching
+
+Docker builds in layers, and each instruction (RUN, COPY, etc.) creates a cacheable layer.
+
+If nothing changes in a layer, Docker reuses the cached version instead of rebuilding it.
+
+Example impact:
+
+COPY package*.json ./ + RUN npm install will only re-run if package.json changes.
+
+This saves a lot of time, especially for large dependency installs.
+
+🔹 Caching with Multistage
+
+In a multistage build, each stage benefits from caching independently.
+
+If only app source code changes, the build stage after npm install reuses the cached dependencies layer, so only COPY . . + npm run build re-executes.
+
+The final runtime stage copies from the builder, and only rebuilds that part if the build output changes.
+
+🔹 Impact on Build Process
+
+Faster builds → thanks to layer caching (dependencies don’t reinstall every time).
+
+Smaller images → because the final stage doesn’t include compilers, build tools, or temporary files.
+
+More secure & portable → final image only has production binaries/artifacts.
