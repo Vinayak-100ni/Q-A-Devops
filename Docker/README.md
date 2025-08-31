@@ -236,3 +236,37 @@ Faster builds → thanks to layer caching (dependencies don’t reinstall every 
 Smaller images → because the final stage doesn’t include compilers, build tools, or temporary files.
 
 More secure & portable → final image only has production binaries/artifacts.
+
+##    Entrypoint vs CMD? 
+CMD sets default commands/arguments for a container, but they can be completely overridden at runtime. ENTRYPOINT defines the main executable that always runs, and runtime arguments are passed to it. A common best practice is to use ENTRYPOINT for the main process and CMD for default parameters
+
+##    How to performance optimized lightweight Docker container?
+To optimize Docker containers for performance and lightweight builds, I use minimal base images like Alpine or Distroless, apply multi-stage builds, reduce layers, and clean up unnecessary files. I also use .dockerignore, run containers as non-root, and copy only what’s required. Additionally, I tune builds for caching and set resource limits to ensure efficient runtime performance
+
+##     Your Dockerized application relies on a database for persistence. Explain how you would manage data persistence and backups for the database in a containerized environment.
+In a containerized setup, I use Docker volumes to persist database data outside the container lifecycle. For backups, I set up regular dumps or snapshot the volumes, storing them in remote storage like S3. In production, I’d prefer a managed database or use Kubernetes StatefulSets with persistent volumes for durability. This ensures data persistence, automated backups, and disaster recovery
+
+##     Your team uses Docker Compose for local development, but you want to ensure that the production environment is consistent with the development environment. How would you achieve this consistency in both environments?
+To ensure consistency, I build Docker images once and push them to a registry so both development and production use the same image. I separate configurations using environment variables and multiple Compose files (docker-compose.override.yml for dev and docker-compose.prod.yml for production). In production, I run these with Docker Swarm or Kubernetes, while CI/CD pipelines guarantee both environments are built and deployed from the same source of truth.
+
+##     Your organization is adopting a microservices architecture with multiple teams working on different services. How would you manage Docker image versioning and ensure smooth updates across all services while minimizing disruptions?
+In our microservices setup, we follow a clear Docker image versioning strategy. Every image is tagged using semantic versioning like 1.2.3 and also with an immutable Git commit SHA, so we can always trace exactly what code is running. We never use the latest tag in production.
+
+We also follow the principle of build once, run everywhere — the same image built in CI is promoted across dev, staging, and production, with only environment-specific configuration changing.
+
+To minimize disruptions, we rely on progressive delivery. By default, we use rolling updates with readiness and liveness probes so new pods only receive traffic when healthy. For sensitive updates, we use canary or blue-green deployments so we can gradually shift traffic and quickly roll back if issues occur.
+
+On top of that, we use API versioning and contract testing so that teams can release services independently without breaking others. Observability and automated rollback policies are in place so any failed release can be reverted with minimal downtime.
+
+This way, image versioning stays consistent, and updates are smooth across all services.
+
+##     Your Docker containerized application is experiencing a memory leak in production. Walk me through the steps you would take to diagnose and address the issue.
+If my containerized app is showing a memory leak in production, I would first start with monitoring and metrics. I’d check Docker stats, or tools like Prometheus + Grafana, to confirm which container is consuming more memory than expected.
+
+Next, I’d look into application logs and metrics to see if the leak is from unclosed connections, large objects, or inefficient code. If needed, I’d run the container locally with profiling tools like heapdump, jmap (for Java), or node --inspect (for Node.js) to trace memory usage.
+
+On the container side, I’d make sure resource limits (mem_limit) are set in Docker/Kubernetes to prevent one container from impacting others.
+
+For a temporary fix, I could restart the container (since containers are stateless by design), but the permanent fix would be to patch the code causing the leak and build a new image. I’d then redeploy it gradually using rolling or canary updates.
+
+Finally, I’d put monitoring alerts in place for memory thresholds so the issue is caught early next time.
