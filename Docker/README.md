@@ -45,21 +45,20 @@ A Dockerfile is essentially a text file containing step-by-step instructions tha
 For example:
 
 ### Step 1: Base image
-FROM node:18
+FROM ubuntu:latest
 
 ### Step 2: Set working directory
 WORKDIR /app
 
 ### Step 3: Copy files into image
 COPY package*.json ./
-RUN npm install
-COPY . .
+RUN apt-get -y update && apt-get -y install nginx
 
 ### Step 4: Expose port
-EXPOSE 3000
+EXPOSE 8080
 
 ### Step 5: Start application
-CMD ["npm", "start"]
+CMD ["nginx","-g", "daemon off;"]
 
 After writing the Dockerfile, we build the image with:
 
