@@ -50,8 +50,7 @@ FROM ubuntu:latest
 ### Step 2: Set working directory
 WORKDIR /app
 
-### Step 3: Copy files into image
-COPY package*.json ./
+### Step 3: install nginx
 RUN apt-get -y update && apt-get -y install nginx
 
 ### Step 4: Expose port
