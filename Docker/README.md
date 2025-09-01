@@ -148,7 +148,7 @@ Across different networks: You need to connect the container to the same user-de
 
 External communication: Expose ports using -p or --publish flag.
 ##     How do you manage data persistence in Docker containers?
-In Docker, containers are ephemeral by default — meaning when a container is removed, its data is lost. To manage data persistence, I use:
+In Docker, when a container is removed, its data is lost. To manage data persistence, I use:
 
 Volumes (preferred approach)
 
