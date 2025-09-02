@@ -279,3 +279,47 @@ At the orchestration level (Kubernetes), we set resource limits, secrets managem
 Additionally, we integrate container image scanning and signing in CI/CD (using tools like Trivy, Clair, or Docker Scout), and enable runtime monitoring to detect anomalies.
 
 Finally, we make sure the Docker daemon and host OS are patched, and apply the principle of least privilege for access control so only authorized users can run or push images.”
+##     You are migrating an existing application to a new host that has Docker installed. How would you transfer and deploy the application using Docker to minimize downtime and ensure a smooth transition?
+If I have to migrate an existing application to a new host with Docker while minimizing downtime, I would follow these steps:
+
+Containerize the application – First, I’ll write a Dockerfile (if not already available) and build a Docker image of the application. I’ll store this image in a registry like Docker Hub or a private registry.
+
+Set up the new host – On the new host, I’ll install Docker, pull the exact same application image from the registry, and ensure that environment variables, secrets, and configurations are consistent with the old host.
+
+Data and dependencies – If the application uses databases or persistent storage, I’ll either mount Docker volumes or migrate the database separately, ensuring data consistency.
+
+Testing before switch – I’ll run the container on the new host with the same ports and configurations, test internally, and make sure health checks pass.
+
+Traffic switch (minimize downtime) – Finally, I’ll update DNS or load balancer configuration to point traffic from the old host to the new one. This way, downtime is near zero because the app is already up and running before switching traffic.
+
+Rollback plan – If anything fails, I can quickly revert traffic back to the old host until the issue is resolved.
+##     You have been tasked with implementing a blue-green deployment strategy for a Dockerized application. Explain the steps involved in this process and how it ensures minimal downtime during updates.
+To implement a blue-green deployment for a Dockerized application, I would do the following:
+
+Set up two identical environments – one called Blue (the current live version) and one called Green (the new version). Both are Dockerized and have the same configuration, but only Blue is serving production traffic.
+
+Deploy new version to Green – I build and run the new Docker image in the Green environment, making sure it uses the same dependencies, configs, and persistent data sources as Blue.
+
+Test Green environment – Before switching traffic, I validate Green with health checks, integration tests, and user acceptance testing.
+
+Switch traffic – Once testing passes, I update the load balancer or DNS to route user traffic from Blue to Green. This switch is instant, so downtime is near zero.
+
+Monitor performance – I monitor Green closely for errors, latency, or unexpected behavior.
+
+Rollback plan – If issues occur, I can quickly redirect traffic back to Blue since it’s still running, ensuring reliability.
+##     You are responsible for monitoring a fleet of Docker containers in a production environment. What tools and practices would you use to monitor container health, resource usage, and performance?
+To monitor Docker containers in production, I would use a mix of tools and best practices:
+
+Built-in Docker tools – Use docker stats and Docker events for quick checks on CPU, memory, network, and container restarts.
+
+Metrics collection – Implement Prometheus + cAdvisor to collect detailed container-level metrics like CPU, memory, network, and disk I/O.
+
+Visualization – Use Grafana dashboards to visualize container health and performance trends.
+
+Centralized logging – Send container logs to ELK/EFK stack (Elasticsearch, Fluentd/Fluent Bit, Kibana) or Grafana Loki for centralized log analysis.
+
+Health checks – Define HEALTHCHECK instructions in Dockerfiles so orchestrators (like Docker Swarm or Kubernetes) can automatically restart unhealthy containers.
+
+Alerting – Configure Prometheus Alertmanager or a similar tool to send alerts (Slack, Email, PagerDuty) when thresholds are breached.
+
+Best practices – Set resource limits (--memory, --cpus) to prevent noisy neighbor issues and continuously monitor container restarts or crashes for early issue detection.
