@@ -27,3 +27,33 @@ Use cases: I use Deployments for stateless services and StatefulSets for databas
 Kubernetes handles load balancing mainly through Services. When I expose an application with a Service, Kubernetes gives it a stable IP and DNS name, and then distributes traffic across all healthy pods behind it. By default, it uses kube-proxy with iptables or IPVS to balance traffic at the network level.
 
 For external traffic, I can use a NodePort or a LoadBalancer Service — the LoadBalancer integrates with the cloud provider’s load balancer to spread traffic across nodes. In production, we usually set up an Ingress controller on top of this, which gives more advanced HTTP load balancing, SSL termination, and path-based routing.
+
+##     What is a Kubernetes Namespace, and why would you use multiple namespaces in a cluster?
+A Kubernetes Namespace is a way to logically divide a cluster into virtual sub-clusters. It helps organize and isolate resources like pods, services, and deployments.
+
+I would use multiple namespaces to:
+
+Separate environments like dev, test, and prod in the same cluster.
+
+Isolate teams or projects so their resources don’t conflict.
+
+Apply different resource quotas and limits to control how much CPU and memory each group can use.
+
+Control access with RBAC so teams only see and manage their own resources.
+
+For example, I might run a frontend app in a dev namespace with limited resources, while the production version runs in a prod namespace with stricter quotas and monitoring
+
+## Explain the concept of Kubernetes Services and how they enable network connectivity for Pods.
+In Kubernetes, Pods are short-lived — they can die and restart with different IP addresses. A Service solves this by providing a stable IP and DNS name that load-balances traffic across all healthy pods behind it.
+
+There are different types of Services:
+
+ClusterIP – the default, exposes the app inside the cluster.
+
+NodePort – exposes the app on a static port of each node for external access.
+
+LoadBalancer – integrates with cloud provider load balancers for external traffic.
+
+ExternalName – maps the service to an external DNS name.
+
+So essentially, Services act as a consistent entry point and handle discovery, routing, and load balancing, ensuring clients don’t need to track changing pod IP
