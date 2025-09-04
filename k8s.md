@@ -57,3 +57,6 @@ LoadBalancer – integrates with cloud provider load balancers for external traf
 ExternalName – maps the service to an external DNS name.
 
 So essentially, Services act as a consistent entry point and handle discovery, routing, and load balancing, ensuring clients don’t need to track changing pod IP
+
+##     What is the role of a Kubernetes Ingress controller, and how does it work?
+A Kubernetes Ingress controller manages external access to services, usually HTTP and HTTPS. Instead of creating a separate LoadBalancer for each service, I can define Ingress rules that map different paths or hostnames to different services. The Ingress controller, like NGINX or Traefik, reads those rules and routes traffic accordingly. It also handles things like SSL termination, path-based routing, and host-based routing. In simple terms, it’s like a smart router at the edge of the cluster that directs incoming traffic to the right service.
