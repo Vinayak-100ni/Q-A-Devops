@@ -60,3 +60,32 @@ So essentially, Services act as a consistent entry point and handle discovery, r
 
 ##     What is the role of a Kubernetes Ingress controller, and how does it work?
 A Kubernetes Ingress controller manages external access to services, usually HTTP and HTTPS. Instead of creating a separate LoadBalancer for each service, I can define Ingress rules that map different paths or hostnames to different services. The Ingress controller, like NGINX or Traefik, reads those rules and routes traffic accordingly. It also handles things like SSL termination, path-based routing, and host-based routing. In simple terms, it’s like a smart router at the edge of the cluster that directs incoming traffic to the right service.
+
+##    What is Kubernetes' role in auto-scaling, and how can you set up Horizontal Pod Autoscaling (HPA)?
+Kubernetes’ role in auto-scaling:
+Kubernetes helps applications scale automatically by monitoring workloads and adjusting resources as needed. It provides three main types of auto-scaling:
+
+Horizontal Pod Autoscaler (HPA): Scales the number of pod replicas up or down based on CPU, memory, or custom metrics.
+
+Vertical Pod Autoscaler (VPA): Adjusts the resource requests and limits for pods.
+
+Cluster Autoscaler: Scales the number of worker nodes in the cluster.
+
+So, Kubernetes ensures applications stay highly available and cost-efficient by only using the resources required at a given time.
+
+How to set up HPA (Horizontal Pod Autoscaler):
+To set up HPA, I would:
+
+Deploy an application with a Deployment or ReplicaSet, specifying resource requests/limits for CPU or memory.
+
+Enable metrics-server in the cluster because HPA relies on it to gather resource usage metrics.
+
+Create an HPA object using kubectl autoscale. For example:
+### kubectl autoscale deployment myapp --cpu-percent=50 --min=2 --max=10
+Here, if average CPU usage across pods exceeds 50%, Kubernetes will scale pods up.
+
+If it goes below, it will scale down but not below 2 pods.
+
+Monitor scaling with:
+
+### kubectl get hpa
