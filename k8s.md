@@ -89,3 +89,43 @@ If it goes below, it will scale down but not below 2 pods.
 Monitor scaling with:
 
 ### kubectl get hpa
+##    Describe Kubernetes rolling updates and canary deployments. When and why would you use each approach?
+Rolling Update = gradual, safe upgrade with no downtime.
+
+Canary Deployment = test new version on limited users first before full rollout.
+
+##    Explain Kubernetes' role in self-healing and how it handles container failures.
+One of the biggest advantages of Kubernetes is its self-healing capability. Kubernetes constantly monitors the desired state versus the actual state of workloads, and if something goes wrong, it takes corrective actions automatically to bring the system back to the desired state.
+
+How Kubernetes handles container failures:
+
+Pod restarts:
+If a container inside a pod crashes, the kubelet on that node automatically restarts the container based on its restart policy.
+
+Pod replacement:
+If an entire pod becomes unhealthy or the node it’s running on fails, Kubernetes schedules a new pod on a healthy node to maintain availability.
+
+Health checks:
+Kubernetes uses liveness probes and readiness probes.
+
+If a liveness probe fails, Kubernetes restarts the container.
+
+If a readiness probe fails, Kubernetes removes that pod from the Service endpoints until it becomes healthy again, preventing traffic from going to a bad pod.
+
+ReplicaSets & Deployments:
+Kubernetes ensures that the number of replicas defined in a Deployment always matches. If a pod is deleted or goes down, the ReplicaSet automatically creates a replacement.
+
+##    What are Kubernetes ConfigMaps and Secrets, and how do they differ in terms of storing configuration data?
+ConfigMaps are used to store non-sensitive configuration data like environment variables, database URLs, or feature flags, while Secrets are specifically designed to store sensitive data like passwords, API keys, or TLS certificates.
+
+The main difference is that ConfigMaps store plain text configuration, whereas Secrets add an extra layer of protection by encoding the values in base64 and supporting integrations with tools like KMS or Vault for encryption.
+###    How would you upgrade a Kubernetes cluster to a new version while minimizing downtime?
+To upgrade a Kubernetes cluster with minimal downtime, I follow a controlled step-by-step approach. First, I check the Kubernetes release notes and make sure my add-ons and workloads are compatible. Then I upgrade the control plane components one by one, starting with the API server, followed by controller-manager, scheduler, and etcd. After the control plane is stable, I upgrade the worker nodes gradually — usually by draining one node at a time, upgrading its kubelet and kube-proxy, and then bringing it back into the cluster before moving to the next node.
+
+Because workloads are managed by Deployments and ReplicaSets, Kubernetes reschedules pods on healthy nodes while one node is being upgraded, which minimizes downtime. I also make use of rolling updates and health probes to ensure services remain available during the process. Finally, I validate the cluster state and application health after the upgrade before proceeding further.
+##    What is a Helm chart, and how does it simplify application deployment on Kubernetes?
+A Helm chart is a package of pre-configured Kubernetes resources. It bundles together YAML manifests like Deployments, Services, ConfigMaps, and Ingress into a single reusable unit.
+
+It simplifies application deployment because instead of writing and managing multiple YAML files manually, I can install an entire application with a single helm install command. Helm also supports versioning, templating, and easy upgrades or rollbacks, which makes managing complex applications much faster and less error-prone.
+##    How do you monitor a Kubernetes cluster and its workloads? Mention some popular monitoring and logging solutions for Kubernetes.
+I monitor a Kubernetes cluster and its workloads by collecting metrics, logs, and events at both the cluster and application level. For metrics, I typically use Prometheus along with Grafana for visualization. Prometheus scrapes metrics from Kubernetes components and workloads, and Grafana gives me real-time dashboards. For cluster health, I also use metrics-server to power features like Horizontal Pod Autoscaling.
