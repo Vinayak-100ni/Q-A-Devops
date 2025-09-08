@@ -32,3 +32,5 @@ For example, running that command can give me the instance’s IP or IAM role cr
 
 ## How can you create custom AMIs, and why might you want to do so?
 I can create a custom AMI by first launching and configuring an EC2 instance with the OS, applications, and settings I need, and then selecting ‘Create Image’ from the instance. AWS will package that instance into an AMI that I can reuse to launch new instances with the same setup.
+##  What are security groups, and how do they control inbound and outbound traffic to EC2 instances?
+Security groups in AWS act as virtual firewalls for EC2 instances. They control both inbound and outbound traffic at the instance level. Inbound rules define what type of traffic is allowed into the instance — for example, allowing SSH on port 22 or HTTP on port 80. Outbound rules define what traffic the instance can send out. They’re stateful, meaning if I allow inbound traffic on a port, the response traffic is automatically allowed back out. This helps secure instances by only permitting the required traffic.
