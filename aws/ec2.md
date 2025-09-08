@@ -29,3 +29,6 @@ I can access it from within the instance using a simple HTTP call to the metadat
 curl http://169.254.169.254/latest/meta-data/
 
 For example, running that command can give me the instance’s IP or IAM role credentials. This is very useful for automation and configuration management.
+
+## How can you create custom AMIs, and why might you want to do so?
+I can create a custom AMI by first launching and configuring an EC2 instance with the OS, applications, and settings I need, and then selecting ‘Create Image’ from the instance. AWS will package that instance into an AMI that I can reuse to launch new instances with the same setup.
