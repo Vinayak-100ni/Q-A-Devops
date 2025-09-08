@@ -34,3 +34,8 @@ For example, running that command can give me the instance’s IP or IAM role cr
 I can create a custom AMI by first launching and configuring an EC2 instance with the OS, applications, and settings I need, and then selecting ‘Create Image’ from the instance. AWS will package that instance into an AMI that I can reuse to launch new instances with the same setup.
 ##  What are security groups, and how do they control inbound and outbound traffic to EC2 instances?
 Security groups in AWS act as virtual firewalls for EC2 instances. They control both inbound and outbound traffic at the instance level. Inbound rules define what type of traffic is allowed into the instance — for example, allowing SSH on port 22 or HTTP on port 80. Outbound rules define what traffic the instance can send out. They’re stateful, meaning if I allow inbound traffic on a port, the response traffic is automatically allowed back out. This helps secure instances by only permitting the required traffic.
+##  Explain the use of Network Access Control Lists (NACLs) and how they differ from security groups.
+Network ACLs (NACLs) are an additional layer of security that act at the subnet level. They control both inbound and outbound traffic for the entire subnet using numbered rules, and they are stateless – meaning if I allow inbound traffic, I also have to explicitly allow outbound traffic for the response.
+
+NACLs = subnet level, stateless, rule-based; Security Groups = instance level, stateful, easier to manage.
+
