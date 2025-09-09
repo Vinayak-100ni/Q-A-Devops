@@ -104,3 +104,42 @@ You can create an AMI from a snapshot (by adding OS and configs), but a snapshot
 
 ##  How to boot related issues like kernal panic in ec2 Instances?
 For kernel panic or boot issues, I’d use console logs to identify the error, detach the root volume, fix it using another instance, and then reattach it back. This way, I can recover the server without losing data.
+
+##  How many maximum number of Ips can be attached to a instance?
+The maximum number of IPs that can be attached to an instance depends on its type. Each instance supports a specific number of Elastic Network Interfaces (ENIs) and IPs per ENI. For example, small instances like t3.micro support up to 4 IPs, while very large instances like m5.24xlarge support up to 750 IPs.
+
+##  Describe different types of purchasing options available in aws?
+In AWS, we can purchase instances using different models:
+
+On-Demand for short-term, pay-as-you-go workloads.
+
+Reserved Instances & Savings Plans for long-term predictable workloads with big discounts.
+
+Spot Instances for cost-sensitive, flexible, or fault-tolerant workloads.
+
+Dedicated Hosts/Instances for compliance and license-bound apps.
+
+Capacity Reservations to ensure availability in a given AZ.”
+
+##  What is Amazon Elastic Block Store (EBS), and how does it differ from Amazon S3?
+Amazon EBS is block storage that works like a hard disk attached to an EC2 instance. It provides low-latency, consistent performance and is mainly used for things like boot volumes, file systems, or databases.
+
+Amazon S3 is different — it’s object storage. Instead of blocks, data is stored as objects in buckets, and it’s designed for durability and scalability. It’s commonly used for backups, static website hosting, or storing large amounts of unstructured data.
+
+So, in short — EBS is block storage for EC2, while S3 is object storage for scalable data storage.
+
+##  What are the different types of EBS volumes available, and when would you use each type (e.g., gp2, io1, st1, sc1, gp3)?
+gp2/gp3 for general workloads, io1/io2 for high-performance databases, st1 for streaming/big data, and sc1 for cold storage or archives
+
+##  How do you resize an EBS volume, and what precautions should be taken when doing so?
+To resize an EBS volume, I go to the AWS Management Console or use the CLI and modify the volume to increase its size, change IOPS, or throughput. After resizing, I also need to extend the file system inside the EC2 instance so the OS can use the new space.
+
+Precautions are important:
+
+First, I always take a snapshot before modifying, so I have a backup if anything goes wrong.
+
+Second, resizing only supports increasing size, not reducing it.
+
+Third, after modification, performance may take a short time to optimize in the background.
+
+Finally, I make sure to extend the partition and file system correctly, otherwise the OS won’t recognize the extra storage.
