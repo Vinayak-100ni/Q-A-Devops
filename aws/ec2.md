@@ -39,3 +39,30 @@ Network ACLs (NACLs) are an additional layer of security that act at the subnet 
 
 NACLs = subnet level, stateless, rule-based; Security Groups = instance level, stateful, easier to manage.
 
+## What is Auto Scaling, and how can it be used to ensure high availability and scalability of EC2 instances? ans in a way that i directly tell to interviewer and in simple terms
+Auto Scaling in AWS automatically adjusts the number of EC2 instances in a group based on demand.
+It helps in two main ways:
+
+High Availability – If an instance becomes unhealthy or fails, Auto Scaling will automatically replace it with a new one, ensuring my application always has the required capacity.
+
+Scalability – During high traffic, it can add more EC2 instances to handle the load, and during low traffic, it can remove extra instances to save costs.
+
+##  Explain the purpose of Amazon Elastic Load Balancing (ELB) and its integration with EC2 instances.
+Elastic Load Balancer (ELB) automatically distributes incoming traffic across multiple EC2 instances to ensure no single instance is overloaded.
+
+The main purpose is:
+
+High Availability – If one EC2 instance goes down, ELB routes traffic to healthy instances only.
+
+Scalability – It works with Auto Scaling. As new EC2 instances are launched, ELB automatically starts sending traffic to them.
+
+Fault Tolerance – ELB continuously checks the health of instances and avoids sending traffic to unhealthy ones.
+
+Integration with EC2:
+
+We place an ELB in front of our EC2 Auto Scaling Group.
+
+Users hit the ELB endpoint instead of a single EC2 instance.
+
+ELB then balances requests among all healthy EC2 instances running in one or more Availability Zones.
+We configure this using Auto Scaling Groups (ASGs) with scaling policies tied to metrics like CPU utilization, request count, or custom CloudWatch alarms.
