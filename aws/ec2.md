@@ -152,3 +152,15 @@ An EBS snapshot is an incremental backup of a volume to S3, ensuring durable sto
 
 Real-world use case:
 “For example, before applying a major database upgrade, I take an EBS snapshot. If something goes wrong, I can instantly roll back by restoring the volume from that snapshot.
+
+##  How often should you create EBS snapshots, and what strategies can be employed for efficient backup and retention policies?
+EBS snapshots should be created based on workload criticality — daily or hourly for production — and managed with lifecycle policies for cost-efficient retention.”
+
+Practical example:
+“For a production database, I schedule automated daily snapshots with a 30-day retention policy, and replicate critical ones to another region for disaster recovery
+
+##  What are the best practices for encrypting EBS volumes at rest, and how do you implement encryption?
+EBS encryption is best done by enabling KMS-based encryption by default, so all volumes, snapshots, and data in transit are automatically protected without extra effort. & IAM roles for least-privilege”
+
+Real-world example:
+“In production, I enforce default EBS encryption at the account level with a customer-managed KMS key, so every new volume or snapshot is automatically encrypted and only accessible to authorized IAM roles.
