@@ -66,3 +66,6 @@ Users hit the ELB endpoint instead of a single EC2 instance.
 
 ELB then balances requests among all healthy EC2 instances running in one or more Availability Zones.
 We configure this using Auto Scaling Groups (ASGs) with scaling policies tied to metrics like CPU utilization, request count, or custom CloudWatch alarms.
+
+##  How can you configure Amazon Route 53 for DNS-based load balancing of EC2 instances?
+We configure Route 53 with records that point to EC2 instances or an ELB, and then use routing policies to balance traffic at the DNS level
