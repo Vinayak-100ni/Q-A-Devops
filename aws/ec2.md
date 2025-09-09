@@ -69,3 +69,35 @@ We configure this using Auto Scaling Groups (ASGs) with scaling policies tied to
 
 ##  How can you configure Amazon Route 53 for DNS-based load balancing of EC2 instances?
 We configure Route 53 with records that point to EC2 instances or an ELB, and then use routing policies to balance traffic at the DNS level
+
+##  What is status check in EC2 instance?
+Status checks in EC2 are automated health checks that AWS runs to make sure your instance is working properly.
+There are two types:
+
+System Status Check – This checks the AWS infrastructure hosting your instance (like hardware, networking, power, or host issues). If this fails, it means the problem is on AWS’s side.
+
+Instance Status Check – This checks the actual virtual machine (your EC2 instance) for problems like OS boot issues, corrupted file system, or software misconfiguration.
+
+If either check fails, AWS shows it in the console. For system issues, AWS fixes it, or you can stop/start the instance to move it to healthy hardware. For instance issues, you need to troubleshoot your OS or application.
+
+##  How to changes instance types for running application without downtime of application?
+To avoid downtime, don’t resize the running instance directly. Instead, launch new instances of the required type behind a load balancer or use blue-green deployment, then cut traffic over.
+
+##  What is difference between AMI and Snapshot
+AMI (Amazon Machine Image):
+
+It’s a pre-configured template used to launch EC2 instances.
+
+It contains the operating system, application server, and software you need.
+
+Basically, it’s like a blueprint for creating new EC2 instances.
+
+✅ Snapshot:
+
+It’s a backup of an EBS volume at a specific point in time.
+
+Snapshots are stored in S3 and can be used to create new volumes or even build an AMI.
+
+They only capture the data of the disk, not the full instance configuration.
+
+You can create an AMI from a snapshot (by adding OS and configs), but a snapshot alone is just raw storage backup.
