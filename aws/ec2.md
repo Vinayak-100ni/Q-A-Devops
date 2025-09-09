@@ -164,3 +164,6 @@ EBS encryption is best done by enabling KMS-based encryption by default, so all 
 
 Real-world example:
 “In production, I enforce default EBS encryption at the account level with a customer-managed KMS key, so every new volume or snapshot is automatically encrypted and only accessible to authorized IAM roles.
+
+##  How can you monitor the performance and health of EBS volumes, and what AWS services or tools can assist in this process?
+I monitor EBS volumes using CloudWatch metrics (IOPS, throughput, latency, queue length), set alarms for thresholds, and integrate with CloudTrail for auditing
