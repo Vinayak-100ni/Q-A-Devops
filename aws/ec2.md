@@ -101,3 +101,6 @@ Snapshots are stored in S3 and can be used to create new volumes or even build a
 They only capture the data of the disk, not the full instance configuration.
 
 You can create an AMI from a snapshot (by adding OS and configs), but a snapshot alone is just raw storage backup.
+
+##  How to boot related issues like kernal panic in ec2 Instances?
+For kernel panic or boot issues, I’d use console logs to identify the error, detach the root volume, fix it using another instance, and then reattach it back. This way, I can recover the server without losing data.
