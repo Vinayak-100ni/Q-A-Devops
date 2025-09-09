@@ -143,3 +143,12 @@ Second, resizing only supports increasing size, not reducing it.
 Third, after modification, performance may take a short time to optimize in the background.
 
 Finally, I make sure to extend the partition and file system correctly, otherwise the OS won’t recognize the extra storage.
+
+##  What is the difference between EBS volume types and EBS volume size, and how do they impact performance?
+EBS volume type defines the storage behavior — whether it’s SSD or HDD, optimized for IOPS or throughput. EBS volume size defines how much storage you get, and in some types like gp2, performance scales with size. So, type gives the performance profile, and size determines how much performance you can actually achieve within that profile
+
+##  What is an EBS snapshot, and why is it important for data durability and disaster recovery?
+An EBS snapshot is an incremental backup of a volume to S3, ensuring durable storage and enabling quick recovery in case of failures.”
+
+Real-world use case:
+“For example, before applying a major database upgrade, I take an EBS snapshot. If something goes wrong, I can instantly roll back by restoring the volume from that snapshot.
