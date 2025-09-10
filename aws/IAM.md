@@ -64,3 +64,7 @@ Test to ensure it works.
 Deactivate the old key, then delete it once confirmed.
 
 Best practice — wherever possible, replace IAM user keys with IAM roles and temporary credentials (via STS or AWS SSO), so we avoid long-lived keys altogether.
+
+##  Your organization is migrating on-premises applications to AWS. How would you ensure a seamless transition for user authentication and authorization using AWS IAM?
+To ensure seamless authentication during migration, I’d integrate AWS IAM with our existing identity provider using IAM Identity Center or SAML, so users continue with the same credentials. I’d use IAM roles with least-privilege policies, enforce MFA for sensitive access, and test gradually to ensure a smooth cutover
+
