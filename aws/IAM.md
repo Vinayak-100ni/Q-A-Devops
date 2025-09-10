@@ -35,3 +35,6 @@ creating a role in the target account with a trust policy for the external accou
 Attachment: IAM policies attach to identities(users, groups, or roles), resource-based policies attach to resources.
 
 Cross-account access: IAM policies can’t grant access to another AWS account directly, but resource-based policies can.
+
+##  How do you rotate access keys for IAM users, and why is key rotation important?
+I rotate IAM access keys by creating a new one, updating applications to use it, testing, and then deleting the old key. Rotation is important to reduce the risk of leaked or compromised keys . Alternatively, I use AWS Secrets Manager or AWS CLI automation scripts to manage and rotate keys securely without manual steps.
