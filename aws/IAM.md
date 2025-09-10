@@ -38,3 +38,29 @@ Cross-account access: IAM policies can’t grant access to another AWS account d
 
 ##  How do you rotate access keys for IAM users, and why is key rotation important?
 I rotate IAM access keys by creating a new one, updating applications to use it, testing, and then deleting the old key. Rotation is important to reduce the risk of leaked or compromised keys . Alternatively, I use AWS Secrets Manager or AWS CLI automation scripts to manage and rotate keys securely without manual steps.
+
+##  What is trusted entity in aws
+A trusted entity in AWS is simply the user, service, or account that is allowed to assume an IAM role. For example, if I create a role for EC2 to access S3, then EC2 is the trusted entity. It’s defined in the role’s trust policy,
+
+##  Your organization is concerned about security breaches due to compromised AWS access keys. How would you implement a secure access key rotation strategy for IAM users?
+If my organization is concerned about compromised AWS access keys, I would implement a secure access key rotation strategy. The idea is to make sure no IAM user has old, unused, or long-lived keys lying around.
+
+I’d approach it like this:
+
+Enable IAM access analyzer / credential report to identify users with active access keys and see when they were last rotated.
+
+Enforce rotation policy — for example, rotate keys every 90 days using an IAM password and key policy.
+
+Use automation — set up a Lambda function or AWS Config rule to detect keys older than the allowed age and notify via SNS or even disable them automatically.
+
+Rotation steps:
+
+Create a new key for the user.
+
+Update applications or scripts to use the new key.
+
+Test to ensure it works.
+
+Deactivate the old key, then delete it once confirmed.
+
+Best practice — wherever possible, replace IAM user keys with IAM roles and temporary credentials (via STS or AWS SSO), so we avoid long-lived keys altogether.
