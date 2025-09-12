@@ -2,6 +2,8 @@
 
     Jenkins Interview
 
+### A Jenkinsfile is just a text file where we define the entire CI/CD pipeline as code. Instead of configuring jobs manually in Jenkins UI, we write all the build, test, and deploy steps in this file and keep it inside the project’s repo. This makes the pipeline version-controlled, reusable, and consistent across environments. Jenkinsfile can be written in either Declarative or Scripted pipeline syntax, but Declarative is the most commonly used.
+
 ## Q: What is Jenkins, and what is its primary purpose in the software development process?
 A: Jenkins is an open-source automation server used for Continuous Integration (CI) and
 Continuous Delivery (CD). It automates building, testing, and deploying applications. Primary
