@@ -67,3 +67,6 @@ I check configuration (verify launch template/configuration, AMI, instance type,
 
 ##  What metrics and logs should you monitor to ensure the health and performance of Auto Scaling groups?
 I monitor resource metrics (CPU, network), ASG health (desired vs. running instances), application performance (requests/errors), and activity logs to ensure Auto Scaling is scaling correctly and the app stays healthy.
+
+##  What actions would you take if an Auto Scaling group consistently launches instances with failures or if instances are frequently terminated due to scaling down?
+Check launch configuration/template, Review IAM roles and permissions, Look at EC2 capacity/quotas,Inspect health checks, Check user data/scripts, Review scaling policies,  Use Auto Scaling activity history & CloudWatch logs
