@@ -55,3 +55,12 @@ It’s important because when a new instance launches, it takes some time to sta
 
 ##  What are the best practices for setting up Auto Scaling for stateful and stateless applications?
 For stateless apps, I design them to be session-free so they can scale in/out easily with load balancers, while for stateful apps, I externalize or carefully manage the state and scale more cautiously to avoid data loss ,Scale vertically, Carefully set cooldown periods and termination policies to avoid losing critical data.
+
+##  Explain how you would handle Auto Scaling for applications with varying workloads throughout the day (e.g., a news website with peak traffic times).
+I combine scheduled scaling for predictable peaks with dynamic scaling for unexpected spikes, ensuring cost efficiency and consistent performance.
+
+##  What strategies can you use to minimize costs while using Auto Scaling effectively?
+I minimize costs by right-sizing instances, mixing On-Demand and Spot, and using a combination of scheduled and dynamic scaling so that resources match demand without waste.
+
+##  How can you troubleshoot issues related to Auto Scaling, such as instances not launching or scaling events not triggering as expected?
+I check configuration (verify launch template/configuration, AMI, instance type, and VPC/subnet availability.),IAM, CloudWatch alarms, resource limits, and health checks to find the root cause of scaling issues.
