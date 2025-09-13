@@ -36,3 +36,19 @@ Simple Scaling Policy (legacy): Adds or removes a fixed number of instances when
 Scheduled Scaling: Lets you scale at specific times. For example, scale up every day at 9 AM before traffic increases, and scale down at night.
 
 So in short — scaling policies decide whether scaling is proactive (scheduled), reactive (step/simple), or dynamic (target tracking)
+
+##  How do you configure triggers and alarms for Auto Scaling policies using Amazon CloudWatch?
+To configure triggers and alarms for Auto Scaling with CloudWatch, first I create a CloudWatch alarm based on a metric like CPU utilization, memory, or request count. For example, if average CPU utilization goes above 70% for 5 minutes, that alarm will trigger a scale-out policy to launch more instances. Similarly, if CPU goes below 30% for a certain time, another alarm will trigger a scale-in policy to terminate instances.
+
+In short:
+
+CloudWatch collects metrics (like CPU, memory, etc.).
+
+I define thresholds and create alarms.
+
+These alarms are attached to Auto Scaling policies, which decide whether to add or remove instances automatically.
+
+##  What is a cooldown period in Auto Scaling, and why is it important to configure it correctly?
+A cooldown period in Auto Scaling is the waiting time after a scaling activity (like adding or removing instances) before another scaling action can happen.
+
+It’s important because when a new instance launches, it takes some time to start running and report metrics. If Auto Scaling doesn’t wait, it might misread the situation and keep launching or terminating more instances unnecessarily, causing thrashing.
