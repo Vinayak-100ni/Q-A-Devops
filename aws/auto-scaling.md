@@ -52,3 +52,6 @@ These alarms are attached to Auto Scaling policies, which decide whether to add 
 A cooldown period in Auto Scaling is the waiting time after a scaling activity (like adding or removing instances) before another scaling action can happen.
 
 It’s important because when a new instance launches, it takes some time to start running and report metrics. If Auto Scaling doesn’t wait, it might misread the situation and keep launching or terminating more instances unnecessarily, causing thrashing.
+
+##  What are the best practices for setting up Auto Scaling for stateful and stateless applications?
+For stateless apps, I design them to be session-free so they can scale in/out easily with load balancers, while for stateful apps, I externalize or carefully manage the state and scale more cautiously to avoid data loss ,Scale vertically, Carefully set cooldown periods and termination policies to avoid losing critical data.
