@@ -70,3 +70,6 @@ I monitor resource metrics (CPU, network), ASG health (desired vs. running insta
 
 ##  What actions would you take if an Auto Scaling group consistently launches instances with failures or if instances are frequently terminated due to scaling down?
 Check launch configuration/template, Review IAM roles and permissions, Look at EC2 capacity/quotas,Inspect health checks, Check user data/scripts, Review scaling policies,  Use Auto Scaling activity history & CloudWatch logs
+
+##  What are lifecycle hooks in Auto Scaling, and how can they be used for advanced customization of instance scaling actions?
+Lifecycle hooks give me more control by letting me add custom setup or cleanup steps during scaling events, ensuring smooth transitions without data loss or downtime.
