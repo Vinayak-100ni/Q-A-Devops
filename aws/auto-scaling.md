@@ -64,3 +64,6 @@ I minimize costs by right-sizing instances, mixing On-Demand and Spot, and using
 
 ##  How can you troubleshoot issues related to Auto Scaling, such as instances not launching or scaling events not triggering as expected?
 I check configuration (verify launch template/configuration, AMI, instance type, and VPC/subnet availability.),IAM, CloudWatch alarms, resource limits, and health checks to find the root cause of scaling issues.
+
+##  What metrics and logs should you monitor to ensure the health and performance of Auto Scaling groups?
+I monitor resource metrics (CPU, network), ASG health (desired vs. running instances), application performance (requests/errors), and activity logs to ensure Auto Scaling is scaling correctly and the app stays healthy.
