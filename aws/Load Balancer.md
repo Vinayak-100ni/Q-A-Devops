@@ -7,3 +7,14 @@ NLB when I need ultra-high performance and very low latency at the transport lay
 target groups act as the bridge between the load balancer and the actual backend services, and they allow to route traffic to different services based on rules like path or hostname.
 
 ##  Explain the concept of listeners and rules in load balancer configuration.
+In a load balancer, a listener is like the entry point. It checks for incoming connection requests on a specific port and protocol, for example, HTTP on port 80 or HTTPS on port 443.
+
+Rules are the conditions attached to that listener which decide where to send the traffic. For example, I can create rules based on hostnames (api.example.com) or paths (/images) and forward that traffic to the right target group.
+
+##  What are the health checks performed by AWS load balancers, and how do they impact instance health?
+AWS load balancers use health checks to make sure traffic only goes to healthy instances. A health check is basically a test request the load balancer sends to each target, like hitting a specific path on HTTP (/health) or checking a TCP port.
+
+If an instance responds correctly within the configured threshold, it’s marked healthy and will continue receiving traffic. If it fails multiple checks in a row, it’s marked unhealthy, and the load balancer automatically stops sending traffic to it until it recovers.
+
+##  How does AWS ensure high availability for load balancers, and what are the best practices for achieving redundancy?
+AWS ensures high availability by deploying load balancers across multiple AZs, and best practice is to enable multi-AZ, configure health checks, and use Route 53 for multi-region redundancy.
