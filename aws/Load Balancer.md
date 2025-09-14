@@ -5,3 +5,5 @@ NLB when I need ultra-high performance and very low latency at the transport lay
 
 ##  What is a target group in the context of ALB, and how is it used for routing traffic to instances?
 target groups act as the bridge between the load balancer and the actual backend services, and they allow to route traffic to different services based on rules like path or hostname.
+
+##  Explain the concept of listeners and rules in load balancer configuration.
