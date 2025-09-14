@@ -18,3 +18,10 @@ If an instance responds correctly within the configured threshold, it’s marked
 
 ##  How does AWS ensure high availability for load balancers, and what are the best practices for achieving redundancy?
 AWS ensures high availability by deploying load balancers across multiple AZs, and best practice is to enable multi-AZ, configure health checks, and use Route 53 for multi-region redundancy.
+
+## Explain the use of cross-zone load balancing in AWS, and when would you enable or disable it?
+Cross-zone load balancing means the load balancer can distribute traffic evenly across all registered targets in all Availability Zones, not just within the AZ where the request came in.
+
+I would enable it when I want even distribution of traffic and don’t want targets in one AZ to be overloaded while others sit idle. This is especially useful if the number of instances is not the same across AZs.
+
+I might disable it if I want strict isolation per AZ for compliance, latency, or cost reasons — for example, with a Network Load Balancer, cross-zone balancing can increase inter-AZ data transfer costs.
