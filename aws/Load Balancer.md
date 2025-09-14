@@ -25,3 +25,18 @@ Cross-zone load balancing means the load balancer can distribute traffic evenly 
 I would enable it when I want even distribution of traffic and don’t want targets in one AZ to be overloaded while others sit idle. This is especially useful if the number of instances is not the same across AZs.
 
 I might disable it if I want strict isolation per AZ for compliance, latency, or cost reasons — for example, with a Network Load Balancer, cross-zone balancing can increase inter-AZ data transfer costs.
+
+##  What is the importance of distributing instances across multiple Availability Zones (AZs) when using load balancers in AWS?
+Distributing instances across multiple Availability Zones is important because it protects the application from AZ-level failures. If one AZ goes down due to power, network, or hardware issues, the load balancer can still route traffic to healthy instances in the other AZs.
+
+It also improves performance and fault tolerance by spreading traffic, reducing the risk of bottlenecks. In short, multi-AZ setup ensures higher availability, reliability, and better user experience.
+
+##  What is AWS Web Application Firewall (WAF), and how can it be integrated with a load balancer for application security?
+AWS WAF is a Web Application Firewall that protects applications from common web threats like SQL injection, cross-site scripting, or bots. I can create custom rules or use managed rule sets to filter malicious traffic.
+
+It can be integrated with an Application Load Balancer by simply associating the WAF web ACL with the ALB. This way, incoming traffic is inspected at the load balancer level before it reaches the application, adding an extra security layer without changing the app itself.
+
+##  What are blue-green deployments, and how can AWS load balancers be used to facilitate this deployment strategy?
+Blue-green deployment is a release strategy where I run two environments: Blue (current version) and Green (new version). Traffic initially goes to Blue, and once the new version is ready and tested in Green, I switch traffic to Green with minimal downtime.
+
+AWS load balancers make this easy because I can register two target groups — one for Blue and one for Green — and then shift traffic between them. I can do an instant switch or even a gradual shift using weighted routing. This gives me zero-downtime deployments and quick rollback if something fails.
