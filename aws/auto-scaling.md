@@ -73,3 +73,12 @@ Check launch configuration/template, Review IAM roles and permissions, Look at E
 
 ##  What are lifecycle hooks in Auto Scaling, and how can they be used for advanced customization of instance scaling actions?
 Lifecycle hooks give me more control by letting me add custom setup or cleanup steps during scaling events, ensuring smooth transitions without data loss or downtime.
+
+##  Explain the concept of mixed instances in an Auto Scaling group and its benefits.
+instead of using only one EC2 instance type, I can configure the group to use a combination of different instance types and even purchase options like On-Demand and Spot together. This helps in two ways:
+
+Flexibility – if one instance type isn’t available, the group can still launch another type, so scaling is not blocked.
+
+Cost optimization – I can mix cheaper Spot Instances with On-Demand Instances, so I reduce costs while still maintaining reliability.
+
+Basically, mixed instances give me both availability and cost benefits while keeping the application highly scalable.
