@@ -13,3 +13,6 @@ You can connect a VPC to an on-premises data center using a Site-to-Site VPN ove
 Amazon VPC peering lets me connect two VPCs privately so resources in them can talk to each other using private IPs, without going over the public internet.
 
 Use cases include connecting VPCs from different teams or business units, sharing services like authentication or logging across VPCs, or even connecting VPCs across different AWS accounts or regions.
+
+##  What is the significance of route tables in a VPC, and how do you control traffic routing between subnets?
+In a VPC, route tables define how traffic flows. Each subnet is associated with a route table, and the routes inside it decide where packets go,By customizing route tables, I can control whether a subnet is public or private and how subnets communicate with each other.
