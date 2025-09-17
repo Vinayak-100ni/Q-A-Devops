@@ -35,3 +35,6 @@ This reduces the attack surface and makes access more controlled and auditable.
 
 ##  Describe the concept of VPC Flow Logs and their benefits for network monitoring and troubleshooting.
 VPC Flow Logs record the traffic details in and out of your VPC, like source, destination, ports, and whether it was allowed or denied. They help in monitoring network activity, troubleshooting connection issues, checking security rules, and even detecting unusual traffic for better security.
+
+##  What are some best practices for designing VPC architectures that are highly available, fault-tolerant, and scalable?
+For a highly available, fault-tolerant, and scalable VPC, you should design by keeping public and private subnets separated, use NAT gateways for secure outbound access, and load balancers for traffic distribution. Add auto scaling groups for elasticity, route traffic through multiple AZs for redundancy, and use security groups/NACLs with least privilege. Also, plan IP ranges carefully, use VPC endpoints to reduce external exposure, and enable monitoring with Flow Logs and CloudWatch.
