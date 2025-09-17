@@ -32,3 +32,6 @@ Instead of exposing all private servers to the internet, you only expose the bas
 You connect to the bastion host (via SSH or RDP), and from there you “jump” into private instances.
 
 This reduces the attack surface and makes access more controlled and auditable.
+
+##  Describe the concept of VPC Flow Logs and their benefits for network monitoring and troubleshooting.
+VPC Flow Logs record the traffic details in and out of your VPC, like source, destination, ports, and whether it was allowed or denied. They help in monitoring network activity, troubleshooting connection issues, checking security rules, and even detecting unusual traffic for better security.
