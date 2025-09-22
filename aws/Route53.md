@@ -1,0 +1,2 @@
+## What are top-level domains (TLDs) and second-level domains, and how do they relate to Route 53?
+A Top-Level Domain (TLD) is the last part of a domain like .com or .in, while the Second-Level Domain (SLD) is the name just before it, like example in example.com. In Route 53, when I register a domain, I choose both the TLD and SLD (e.g., mybusiness.com). Route 53 then lets me manage DNS records for that domain through hosted zones, mapping names like www.mybusiness.com to AWS resources
