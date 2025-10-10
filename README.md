@@ -25,8 +25,9 @@ Security & Access: Managed IAM roles, SSH keys, and disaster recovery planning.
 
 ### Explain CI vs CD (Delivery vs Deployment).
 ✅ Answer:
+CI/CD, which stands for continuous integration and continuous delivery/deployment, aims to streamline and accelerate the software development lifecycle.
 
-Continuous Integration (CI): Developers merge code frequently, and automated builds/tests run.
+Continuous integration (CI) refers to the practice of automatically and frequently integrating code changes into a shared source code
 
 Continuous Delivery: Code is automatically tested and packaged, ready for production. Deployment is manual.
 
