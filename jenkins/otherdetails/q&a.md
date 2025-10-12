@@ -8,6 +8,9 @@ My key strength is adaptability — I can quickly pick up new tools or concepts.
 
 For weakness, I used to feel nervous in public speaking, but I’m improving by doing more presentations and group discussions.
 
+### why should we hire you ?
+i believe i'm a good fit bcz. i have the right technical skills for this role , along with strong problem solving skill and teamwork ability. I'm also very highly motivated and eager to learn , which means i can quickly adapt to your work culture . i'm confident that i'll deliver value to the company , and grow alongside it
+
 ### 
 
 ### How does your company work?
