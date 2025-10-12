@@ -1,3 +1,15 @@
+### Why do you want to work with us:
+What excites me is that the DevOps role you’re offering perfectly matches my skills in CI/CD pipelines, Docker, Kubernetes, Terraform, and AWS.
+
+I believe I can contribute positively to your projects by helping improve automation, reliability, and deployment speed — while also learning from the experienced engineers here. This makes it a perfect place for me to start and grow my DevOps career.”
+
+### What are your strengths and weaknesses?
+My key strength is adaptability — I can quickly pick up new tools or concepts. For example, in college, I learned a new framework in a short time and used it effectively in a project. I’m also good at teamwork and enjoy collaborating with others.
+
+For weakness, I used to feel nervous in public speaking, but I’m improving by doing more presentations and group discussions.
+
+### 
+
 ### How does your company work?
 company that mainly focuses on providing software development and IT solutions. The company works on various client-based and in-house projects, where different teams handle development, testing, deployment, and maintenance.
 As a DevOps intern, I got to see how the company follows a structured workflow — starting from planning and development, to CI/CD integration, containerization, and deployment using cloud platforms. The development team works closely with DevOps and QA teams to ensure smooth delivery and automation.
