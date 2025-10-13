@@ -1,17 +1,113 @@
-##  How do you control access to AWS services and resources using IAM?
-I control access by designing the right combination of IAM users, groups, roles, and policies, always applying least privilege and security best practices. For example, if a developer only needs access to S3 buckets, I attach an S3-specific policy instead of giving them admin access.
+### 1. What is AWS IAM?
+AWS IAM (Identity and Access Management) is a service that helps me securely control access to AWS resources. It lets me create users, groups, and roles, and assign permissions using policies.
 
-##  Explain the difference between an AWS user, group, role, and policy.
-Users are individual identities with credentials.
+---
 
-Groups let me assign common permissions to multiple users.
+### 2. What are IAM users, groups, and roles?
+- **Users**: Individual identities for people or apps.  
+- **Groups**: Collections of users with shared permissions.  
+- **Roles**: Temporary access identities used by AWS services or external entities.
 
-Roles are used when AWS services or external entities need temporary access without using permanent credentials.
+---
 
-Policies are JSON documents that define what actions are allowed or denied on which resources.
+### 3. What is the difference between IAM roles and IAM users?
+IAM users are permanent identities for humans or apps.  
+IAM roles are temporary identities with permissions that can be assumed when needed — for example, by EC2 instances or Lambda functions.
 
-##  What are the best practices for creating and managing IAM users in AWS?
-I always follow least privilege, avoid root usage, manage users via groups, enforce MFA, rotate or avoid long-term keys, and regularly audit permissions
+---
+
+### 4. What is the IAM root user, and why should you avoid using it?
+The root user is the account owner with full access to everything. It should be avoided because if it gets compromised, the entire AWS account is at risk. I use it only for critical setup tasks and enable MFA on it.
+
+---
+
+### 5. What are IAM policies?
+IAM policies are JSON documents that define what actions are allowed or denied for specific AWS resources.
+
+---
+
+### 6. What’s the difference between AWS managed, customer managed, and inline policies?
+- **AWS Managed**: Predefined by AWS.  
+- **Customer Managed**: Created and managed by us.  
+- **Inline**: Attached directly to a specific user, group, or role.
+
+---
+
+### 7. What is the difference between identity-based and resource-based policies?
+- **Identity-based**: Attached to users, groups, or roles.  
+- **Resource-based**: Attached directly to AWS resources like S3 buckets or Lambda functions.
+
+---
+
+### 8. What are IAM permission boundaries?
+Permission boundaries are advanced settings that define the maximum permissions a role or user can get, even if policies grant more.
+
+---
+
+### 9. What are IAM Access Keys, and when should they be used?
+Access keys are used for programmatic access via AWS CLI or SDKs. They should only be used when you can’t use IAM roles, like for on-prem scripts.
+
+---
+
+### 10. How does IAM integrate with Multi-Factor Authentication (MFA)?
+MFA adds an extra layer of security by requiring a one-time code along with a password. I enable MFA for all sensitive accounts, especially root and admin users.
+
+---
+
+### 11. What are IAM roles with service principals?
+Service principals define which AWS service can assume a role. For example, `ec2.amazonaws.com` means EC2 instances can assume that role.
+
+---
+
+### How do temporary security credentials work in IAM?
+They’re short-term credentials created by assuming a role or using AWS STS (Security Token Service). They automatically expire after a set time.
+
+---
+
+###  What is the maximum number of IAM users per AWS account?
+By default, we can have up to **5,000 IAM users** per AWS account.
+
+---
+
+###  What is IAM policy evaluation logic (explicit deny, allow, etc.)?
+IAM first checks for **explicit deny**, which always overrides.  
+If no deny exists and there’s an **allow**, access is granted.  
+If neither, access is implicitly denied.
+
+---
+
+###  What’s the difference between identity federation and cross-account roles?
+- **Identity Federation**: Allows external identities (like Google or corporate SSO) to access AWS without creating IAM users.  
+- **Cross-Account Roles**: Allow access from one AWS account to another using IAM roles.
+
+---
+
+###  How do IAM roles work with AWS services like EC2 and Lambda?
+We attach roles to EC2 or Lambda, and AWS automatically provides temporary credentials to those services so they can access resources securely — without hardcoding keys.
+
+---
+
+###  What are IAM password policies, and why are they important?
+Password policies define complexity rules like minimum length, special characters, and rotation periods. They help maintain strong security hygiene.
+
+---
+
+###  What is the IAM Access Analyzer?
+IAM Access Analyzer identifies resources shared publicly or with other accounts so I can review and fix unintended access.
+
+---
+
+###  How can you monitor IAM activities in AWS?
+I use **AWS CloudTrail** to log all IAM actions and **AWS Config** to track configuration changes. I also review IAM Access Analyzer findings regularly.
+
+---
+
+###  What are some best practices for securing IAM in AWS?
+- Enable MFA on root and admin users.  
+- Follow the **principle of least privilege**.  
+- Rotate access keys regularly.  
+- Avoid using root user for daily tasks.  
+- Use roles instead of long-term keys.
 
 ##  How do you enable multi-factor authentication (MFA) for AWS IAM users?
 I enable MFA for an IAM user by:
