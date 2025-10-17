@@ -99,3 +99,20 @@ For DR strategies, you can maintain a hot standby or warm standby region.
 Example: In case the primary region goes down due to a natural disaster, Route 53 redirects all traffic to the standby region, ensuring business continuity.
 
 So, Route 53 provides the flexibility to handle global traffic efficiently while maintaining high availability and disaster recovery readiness.
+
+###   Explain different types of records in RT53(Like A, AAAA, NS, SOA, etc.)
+In Amazon Route 53, DNS records are used to define how domain names are resolved to IP addresses or other resources. The main record types are:
+
+A Record (Address Record):
+It maps a domain name to an IPv4 address.
+For example, example.com → 192.0.2.1.
+It’s used when you want your domain to point to an EC2 instance or load balancer using IPv4.
+
+AAAA Record:
+Similar to an A record, but it maps a domain name to an IPv6 address.
+Example: example.com → 2001:0db8:85a3::8a2e:0370:7334.
+
+CNAME Record (Canonical Name):
+It maps one domain name to another domain name (an alias).
+For example, www.example.com → example.com.
+It’s useful when you want multiple domain names to point to the same application.
