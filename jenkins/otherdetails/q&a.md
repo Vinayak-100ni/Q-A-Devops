@@ -67,3 +67,44 @@ For the database, we used Amazon RDS (MySQL) — since it’s a fully managed se
 The frontend was deployed on Amazon S3 as a static website, integrated with CloudFront for faster global delivery.
 
 This setup reduced manual server management and gave us better scalability, availability, and cost efficiency.
+
+### how the Jenkins dashboard looks visually
+The Jenkins dashboard is a web-based interface where we can view and manage all our build jobs, pipelines, and their status.
+
+On the main Jenkins dashboard, you’ll typically see a list of jobs or pipelines with their current build status — shown using color icons like:
+
+🟢 Blue/Green = Successful build
+
+🔴 Red = Failed build
+
+🟡 Yellow = Unstable build
+
+⚫ Gray = Disabled job
+
+On the left-hand side, there’s a menu with options like:
+
+New Item → to create a new job or pipeline
+
+People → to see users and permissions
+
+Build History → to view recent builds and their results
+
+Manage Jenkins → to configure plugins, nodes, and security settings
+
+When you click on a specific job, you can see console output, build stages, and pipeline visualization that shows each step (like build, test, deploy) along with timestamps.
+
+### How the SonarQube Dashboard Looks
+
+The SonarQube dashboard is web-based and visually rich. It shows several key metrics about your code:
+
+Project Overview Page:
+Displays overall project health with key indicators like:
+
+| Term                | Meaning                            | Metric Used                      | Ideal Value        |
+| ------------------- | ---------------------------------- | -------------------------------- | ------------------ |
+| **Quality Gate**    | Pass/Fail check for code readiness | Based on other metrics           | Must Pass          |
+| **Bugs**            | Functional errors                  | Count, severity                  | 0 critical/blocker |
+| **Vulnerabilities** | Security risks                     | Count, severity, security rating | Security Rating A  |
+| **Code Smells**     | Poor coding practices              | Count, maintainability rating    | Maintainability A  |
+| **Coverage**        | % of code tested                   | Line & branch coverage           | ≥ 80%              |
+| **Duplications**    | Repeated code                      | Duplicated lines %               | ≤ 3%               |
