@@ -58,3 +58,12 @@ It helped us quickly detect any post-deployment issues.
 
 
 So overall, the pipeline handled everything automatically — from code commit to deployment and monitoring — which saved time, reduced manual errors, and improved delivery speed.
+
+### How many instances did you use? based on your setup
+Our Kubernetes cluster ran on around 2 to 3 EC2 instances, which acted as worker nodes to host backend microservices. The control plane was managed separately using Amazon EKS, which made scaling and container orchestration easier.
+
+For the database, we used Amazon RDS (MySQL) — since it’s a fully managed service, we didn’t need to maintain any EC2 instance for the database.
+
+The frontend was deployed on Amazon S3 as a static website, integrated with CloudFront for faster global delivery.
+
+This setup reduced manual server management and gave us better scalability, availability, and cost efficiency.
